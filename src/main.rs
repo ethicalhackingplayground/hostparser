@@ -1,14 +1,11 @@
-use std::{error::Error};
 use async_std::io;
 use async_std::io::prelude::*;
 use clap::{App, Arg};
 use futures::{stream::FuturesUnordered, StreamExt};
 use governor::{Quota, RateLimiter};
+use std::error::Error;
 use tldextract::{TldExtractor, TldOption};
-use tokio::{
-    runtime::Builder,
-    task,
-};
+use tokio::{runtime::Builder, task};
 
 #[derive(Clone, Debug)]
 pub struct Job {
@@ -115,12 +112,12 @@ async fn send_url(
 ) -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
     //set rate limit
     let lim = RateLimiter::direct(Quota::per_second(std::num::NonZeroU32::new(rate).unwrap()));
-    
+
     let stdin = io::BufReader::new(io::stdin());
     let mut lines = stdin.lines();
-    
+
     // send the jobs
-    while let Some(line) = lines.next().await { 
+    while let Some(line) = lines.next().await {
         let host = line.unwrap();
         lim.until_ready().await;
         let msg = Job {
