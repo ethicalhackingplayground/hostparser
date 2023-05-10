@@ -21,7 +21,7 @@ pub struct JobResult {
 async fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
     // parse the cli arguments
     let matches = App::new("hostparser")
-        .version("0.1.0")
+        .version("0.1.1")
         .author("Blake Jacobs <krypt0mux@gmail.com>")
         .about("A very fast hostparser")
         .arg(

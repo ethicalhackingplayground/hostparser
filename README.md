@@ -7,3 +7,14 @@ A very fast hostparser written in rust.🦀
 cargo install hostparser
 ```
 
+### Usage
+
+```bash
+echo "glass-eur.ext.google.com" | hostparser
+```
+
+#### OUTPUT
+```
+google.com
+```
+
