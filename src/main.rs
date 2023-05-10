@@ -21,7 +21,7 @@ pub struct JobResult {
 async fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
     // parse the cli arguments
     let matches = App::new("hostparser")
-        .version("0.1.1")
+        .version("0.1.2")
         .author("Blake Jacobs <krypt0mux@gmail.com>")
         .about("A very fast hostparser")
         .arg(
@@ -132,14 +132,6 @@ async fn send_url(
 
 // this function will test perform the aem detection
 pub async fn run_parser(rx: spmc::Receiver<Job>) {
-    let mut headers = reqwest::header::HeaderMap::new();
-    headers.insert(
-        reqwest::header::USER_AGENT,
-        reqwest::header::HeaderValue::from_static(
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:95.0) Gecko/20100101 Firefox/95.0",
-        ),
-    );
-
     while let Ok(job) = rx.recv() {
         let job_host = job.host.unwrap();
         let ext: TldExtractor = TldOption::default().build();
