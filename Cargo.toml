@@ -1,0 +1,22 @@
+[package]
+name = "hostparser"
+authors = ["zoid", "<krypt0mux@gmail.com>"]
+description = "A very fast hostparser."
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/ethicalhackingplayground/hostparser"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+governor = "0.5.1"
+itertools = "0.10.5"
+futures = "0.3.26"
+futures-util = "0.3.26"
+tokio = { version = "^1.2.0", features = ["full"] }
+spmc = "0.3.0"
+clap =  { version = "^3.0.0-beta.2" }
+tldextract = "0.6.0"
+reqwest = { version = "0.11.14", features = ["native-tls", "blocking"] }
+async-std = "1.12.0"
