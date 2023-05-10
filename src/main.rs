@@ -21,7 +21,7 @@ pub struct JobResult {
 async fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
     // parse the cli arguments
     let matches = App::new("hostparser")
-        .version("0.1.2")
+        .version("0.1.3")
         .author("Blake Jacobs <krypt0mux@gmail.com>")
         .about("A very fast hostparser")
         .arg(
@@ -130,7 +130,6 @@ async fn send_url(
     Ok(())
 }
 
-// this function will test perform the aem detection
 pub async fn run_parser(rx: spmc::Receiver<Job>) {
     while let Ok(job) = rx.recv() {
         let job_host = job.host.unwrap();
